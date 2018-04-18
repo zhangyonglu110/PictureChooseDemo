@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+<ImageView
+    android:id="@+id/img_choose"
+
+    android:layout_marginLeft="5dp"
+    android:layout_width="match_parent"
+    android:src="@mipmap/ic_launcher"
+    android:scaleType="fitXY"
+    android:layout_height="80dp">
+</ImageView>
+    <CheckBox
+        android:layout_alignParentRight="true"
+        android:id="@+id/cb_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--<TextView-->
+        <!--android:text="1111"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:id="@+id/tv_img_name"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+</RelativeLayout>

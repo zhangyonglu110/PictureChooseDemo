@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:id="@+id/layout_picture_choose_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:gravity="center_vertical"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:id="@+id/layout_title_back"
+            android:gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content">
+        <ImageView
+            android:scaleType="centerCrop"
+            android:src="@mipmap/icon_back"
+            android:layout_width="25dp"
+            android:layout_height="15dp" />
+        </LinearLayout>
+    <TextView
+        android:layout_centerVertical="true"
+
+        android:layout_toRightOf="@id/layout_title_back"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:id="@+id/tv_title"
+        android:textColor="@android:color/white"
+        android:text="@string/picture"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <Button
+            android:background="@drawable/choosebtn_bg_dw"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
+            android:textSize="15dp"
+            android:id="@+id/btn_confirm"
+            android:textColor="@android:color/white"
+            android:text="@string/confirm"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp" />
+
+    </RelativeLayout>
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+    <com.zyl.myview.zrecycleview.widget.ZRecycleView
+
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginRight="5dp"
+        android:id="@+id/zrecycleview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+  <LinearLayout
+      android:paddingLeft="16dp"
+      android:layout_alignParentBottom="true"
+      android:background="@color/colorPrimary"
+      android:gravity="center_vertical"
+      android:id="@+id/layout_parent_type"
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="50dp">
+
+   <TextView
+       android:text="file type"
+       android:textColor="@android:color/white"
+       android:id="@+id/tv_photo_file_type"
+       android:gravity="center|left"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" />
+
+      <ImageView
+          android:scaleType="centerCrop"
+          android:src="@mipmap/icon_text_right"
+          android:layout_width="10dp"
+          android:layout_height="10dp" />
+
+  </LinearLayout>
+   </RelativeLayout>
+</LinearLayout>

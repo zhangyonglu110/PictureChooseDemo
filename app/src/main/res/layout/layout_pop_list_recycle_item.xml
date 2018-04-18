@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+<ImageView
+    android:scaleType="centerCrop"
+    android:src="@mipmap/ic_launcher"
+    android:id="@+id/img_parent_def"
+    android:layout_centerVertical="true"
+    android:layout_width="60dp"
+    android:layout_height="60dp" />
+    <LinearLayout
+        android:layout_toRightOf="@id/img_parent_def"
+
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:text="file name"
+        android:id="@+id/tv_parent_file_name"
+
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <TextView
+            android:textColor="@android:color/darker_gray"
+            android:layout_centerVertical="true"
+
+            android:textSize="15dp"
+            android:id="@+id/tv_parent_file_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <com.zyl.myview.picture.widget.PopCircleView
+        android:id="@+id/view_checked"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
