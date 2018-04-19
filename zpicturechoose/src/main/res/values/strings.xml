@@ -7,4 +7,5 @@
     <string name="confirm">完成</string>
     <string name="please_choose_picture">请选择图片</string>
     <string name="most_choose_nine_picture">最多选择九张图片</string>
+    <string name="take_photo">拍摄照片</string>
 </resources>

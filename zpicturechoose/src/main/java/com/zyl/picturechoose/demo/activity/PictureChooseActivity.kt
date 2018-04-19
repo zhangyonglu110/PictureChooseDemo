@@ -14,6 +14,7 @@ import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
 import android.view.*
@@ -46,7 +47,7 @@ class PictureChooseActivity : AppCompatActivity() {
     var popRecycleView:ZRecycleView?=null
     var currentFileName=""
     val REQUEST_CARMERA=0x11
-    var headerView:ImageView?=null
+    var headerView:View?=null
     var photoFile:File?=null
     var selectPath=""
     var iscrop=false
@@ -314,9 +315,12 @@ class PictureChooseActivity : AppCompatActivity() {
         /**
          * 添加拍照
          */
-        headerView=LayoutInflater.from(this).inflate(R.layout.layout_picture_list_recycle_item,null) as ImageView
-        headerView!!.setImageResource(R.mipmap.icon_carmera)
-        adapter!!.addHeader(headerView)
+        headerView=LayoutInflater.from(this).inflate(R.layout.layout_picture_list_recycle_header,null)
+        headerView!!.findViewById<ImageView>(R.id.img_header).setImageResource(R.mipmap.icon_carmera)
+        var headerParams=RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT,RecyclerView.LayoutParams.WRAP_CONTENT)
+        headerParams.leftMargin=DensityUtil.dip2px(this,5f)
+//        headerView!!.layoutParams=headerParams
+        adapter!!.addHeader(headerView,headerParams)
         zrecycleview.setAdapter(adapter)
 
 
