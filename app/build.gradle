@@ -25,7 +25,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-//    compile 'com.github.zhangyonglu110:PictureChooseDemo:1.0.0'
+//    compile 'com.github.zhangyonglu110:PictureChooseDemo:1.0.1'
     compile project(':zpicturechoose')
 
     implementation 'com.android.support:appcompat-v7:26.0.0'

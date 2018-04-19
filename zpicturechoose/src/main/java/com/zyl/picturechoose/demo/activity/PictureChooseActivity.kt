@@ -280,8 +280,11 @@ class PictureChooseActivity : AppCompatActivity() {
 
     private fun isshowCarmera() {
         if(currentFileName.equals("all")) {
-            if(adapter!!.headerview==null)
-                adapter!!.addHeader(headerView)
+            if(adapter!!.headerview==null) {
+                var headerParams=RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT,RecyclerView.LayoutParams.WRAP_CONTENT)
+                headerParams.leftMargin=DensityUtil.dip2px(this,5f)
+                adapter!!.addHeader(headerView,headerParams)
+            }
         }else{
             if(adapter!!.headerview!=null){
                 adapter!!.removeHeader(headerView)
