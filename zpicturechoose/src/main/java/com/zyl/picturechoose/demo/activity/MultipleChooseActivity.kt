@@ -1,4 +1,4 @@
-package com.zyl.myview.picture.activity
+package com.zyl.picturechoose.demo.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -17,17 +17,16 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.*
 import com.bumptech.glide.Glide
-import com.zyl.myview.picture.app.PictureApplication
-import com.zyl.myview.picture.app.PictureConstant
-import com.zyl.myview.picture.model.ImgInfor
-import com.zyl.myview.picture.util.SelectImgCachUtil
-import com.zyl.myview.picture.viewholder.PictureHolder
 import com.zyl.myview.zrecycleview.base.BaseRecycleAdapter
 import com.zyl.myview.zrecycleview.base.BaseViewHolder
 import com.zyl.myview.zrecycleview.util.DensityUtil
 import com.zyl.myview.zrecycleview.util.ZItemDecoration
 import com.zyl.myview.zrecycleview.widget.ZRecycleView
 import com.zyl.picturechoose.demo.R
+import com.zyl.picturechoose.demo.app.PictureConstant
+import com.zyl.picturechoose.demo.model.ImgInfor
+import com.zyl.picturechoose.demo.util.SelectImgCachUtil
+import com.zyl.picturechoose.demo.viewholder.PictureHolder
 import kotlinx.android.synthetic.main.activity_multiple_choose.*
 import java.io.File
 import java.sql.Date
@@ -167,7 +166,7 @@ class MultipleChooseActivity : AppCompatActivity() {
         })
 
         btn_confirm.setOnClickListener(View.OnClickListener {
-            var selectedImgInforList=SelectImgCachUtil.getSelectedList()
+            var selectedImgInforList= SelectImgCachUtil.getSelectedList()
             Log.i("aaa","selectedImgInforList.size------------------->"+selectedImgInforList.size)
             if(selectedImgInforList.size<=0){
                 Toast.makeText(this, R.string.please_choose_picture, Toast.LENGTH_SHORT).show()

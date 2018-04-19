@@ -1,2 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zyl.picturechoose.demo" />
+    package="com.zyl.picturechoose.demo"
+    >
+    <application>
+        <activity android:name=".activity.MultipleChooseActivity"/>
+        <activity android:name=".activity.PictureChooseActivity"/>
+    </application>
+
+
+</manifest>

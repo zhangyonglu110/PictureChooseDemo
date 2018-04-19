@@ -1,4 +1,4 @@
-package com.zyl.myview.picture.model
+package com.zyl.picturechoose.demo.model
 
 import java.io.Serializable
 

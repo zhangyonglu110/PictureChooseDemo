@@ -1,6 +1,7 @@
-package com.zyl.myview.picture.util
+package com.zyl.picturechoose.demo.util
 
-import com.zyl.myview.picture.model.ImgInfor
+import com.zyl.picturechoose.demo.model.ImgInfor
+
 
 /**
  * Created by zhangyonglu on 2018/4/18.

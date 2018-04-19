@@ -3,9 +3,10 @@ package com.zyl.myview.picture.app
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import com.zyl.myview.picture.activity.MultipleChooseActivity
-import com.zyl.myview.picture.activity.PictureChooseActivity
+import com.zyl.picturechoose.demo.activity.PictureChooseActivity
 import com.zyl.picturechoose.demo.R
+import com.zyl.picturechoose.demo.activity.MultipleChooseActivity
+import com.zyl.picturechoose.demo.app.PictureConstant
 
 /**
  * Created by zhangyonglu on 2018/4/13.
@@ -68,7 +69,7 @@ class ImageSelecterBuilder {
 
 
     fun startMany() {
-        mIntent = Intent(mContext!!.applicationContext,MultipleChooseActivity::class.java)
+        mIntent = Intent(mContext!!.applicationContext, MultipleChooseActivity::class.java)
         mIntent!!.putExtra(PictureConstant.INTENT_THEME_COLOR, mcolor)
         mIntent!!.putExtra(PictureConstant.INTENT_IMAGE_COUNT, mcount)
         (mContext as Activity).startActivityForResult(mIntent, PictureConstant.REQUEST_CHOOSE_PHOTO)

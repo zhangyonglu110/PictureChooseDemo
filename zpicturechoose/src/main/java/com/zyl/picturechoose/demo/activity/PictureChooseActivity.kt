@@ -1,4 +1,4 @@
-package com.zyl.myview.picture.activity
+package com.zyl.picturechoose.demo.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -20,14 +20,14 @@ import android.util.Log
 import android.view.*
 import android.widget.*
 import com.bumptech.glide.Glide
-import com.zyl.myview.picture.app.PictureConstant
-import com.zyl.myview.picture.model.ImgInfor
 import com.zyl.myview.zrecycleview.base.BaseRecycleAdapter
 import com.zyl.myview.zrecycleview.base.BaseViewHolder
 import com.zyl.myview.zrecycleview.util.DensityUtil
 import com.zyl.myview.zrecycleview.util.ZItemDecoration
 import com.zyl.myview.zrecycleview.widget.ZRecycleView
 import com.zyl.picturechoose.demo.R
+import com.zyl.picturechoose.demo.app.PictureConstant
+import com.zyl.picturechoose.demo.model.ImgInfor
 import kotlinx.android.synthetic.main.activity_picture_choose.*
 import java.io.File
 import java.sql.Date
@@ -152,8 +152,8 @@ class PictureChooseActivity : AppCompatActivity() {
         /**
          * 设置裁剪的宽高
          */
-        intent.putExtra("outputX", com.zyl.myview.picture.util.DensityUtil.dip2px(this,200f)) //200dp
-        intent.putExtra("outputY", com.zyl.myview.picture.util.DensityUtil.dip2px(this,200f))
+        intent.putExtra("outputX", DensityUtil.dip2px(this,200f)) //200dp
+        intent.putExtra("outputY", DensityUtil.dip2px(this,200f))
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString())
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         cropUri=Uri.fromFile(cropFile)
@@ -178,8 +178,8 @@ class PictureChooseActivity : AppCompatActivity() {
         /**
          * 设置裁剪的宽高
          */
-        intent.putExtra("outputX", com.zyl.myview.picture.util.DensityUtil.dip2px(this,200f)) //200dp
-        intent.putExtra("outputY", com.zyl.myview.picture.util.DensityUtil.dip2px(this,200f))
+        intent.putExtra("outputX", DensityUtil.dip2px(this,200f)) //200dp
+        intent.putExtra("outputY", DensityUtil.dip2px(this,200f))
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString())
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         cropUri=Uri.fromFile(cropFile)

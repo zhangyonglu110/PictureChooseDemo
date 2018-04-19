@@ -1,4 +1,4 @@
-package com.zyl.myview.picture.app
+package com.zyl.picturechoose.demo.app
 
 /**
  * Created by zhangyonglu on 2018/4/13.

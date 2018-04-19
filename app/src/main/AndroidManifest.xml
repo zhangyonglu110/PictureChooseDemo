@@ -16,9 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PictureListActivity"/>
-        <activity android:name=".activity.PictureChooseActivity"/>
-        <activity android:name=".activity.MultipleChooseActivity"/>
+        <!--<activity android:name=".activity.PictureChooseActivity"/>-->
+        <!--<activity android:name=".activity.MultipleChooseActivity"/>-->
 
         <!--<provider-->
             <!--android:name="android.support.v4.content.FileProvider"-->

@@ -1,4 +1,4 @@
-package com.zyl.myview.picture.viewholder
+package com.zyl.picturechoose.demo.viewholder
 
 import android.os.Looper
 import android.text.TextUtils
@@ -6,10 +6,10 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
-import com.zyl.myview.picture.model.ImgInfor
-import com.zyl.myview.picture.util.SelectImgCachUtil
 import com.zyl.myview.zrecycleview.base.BaseViewHolder
 import com.zyl.picturechoose.demo.R
+import com.zyl.picturechoose.demo.model.ImgInfor
+import com.zyl.picturechoose.demo.util.SelectImgCachUtil
 
 /**
  * Created by zhangyonglu on 2018/4/16.

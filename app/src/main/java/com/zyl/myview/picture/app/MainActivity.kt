@@ -14,14 +14,15 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.widget.RadioGroup
 import com.zyl.myview.picture.R
-import com.zyl.myview.picture.model.ImgInfor
+import com.zyl.picturechoose.demo.app.PictureConstant
+import com.zyl.picturechoose.demo.model.ImgInfor
 import java.util.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
     val RESULT_PROMISSON=0x06
     var isCrop=false
-    var chooseModel=PictureConstant.PICTURE_MODEL_SINGLE
+    var chooseModel= PictureConstant.PICTURE_MODEL_SINGLE
     var themeColor= Color.BLUE
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

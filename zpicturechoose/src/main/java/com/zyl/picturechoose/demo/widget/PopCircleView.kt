@@ -1,4 +1,4 @@
-package com.zyl.myview.picture.widget
+package com.zyl.picturechoose.demo.widget
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import com.zyl.myview.picture.util.DensityUtil
+import com.zyl.picturechoose.demo.util.DensityUtil
 
 /**
  * Created by zhangyonglu on 2018/4/11.
