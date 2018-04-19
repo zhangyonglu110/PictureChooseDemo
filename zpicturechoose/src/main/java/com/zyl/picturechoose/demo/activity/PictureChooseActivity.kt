@@ -19,7 +19,6 @@ import android.util.Log
 import android.view.*
 import android.widget.*
 import com.bumptech.glide.Glide
-import com.zyl.myview.picture.R
 import com.zyl.myview.picture.app.PictureConstant
 import com.zyl.myview.picture.model.ImgInfor
 import com.zyl.myview.zrecycleview.base.BaseRecycleAdapter
@@ -27,6 +26,7 @@ import com.zyl.myview.zrecycleview.base.BaseViewHolder
 import com.zyl.myview.zrecycleview.util.DensityUtil
 import com.zyl.myview.zrecycleview.util.ZItemDecoration
 import com.zyl.myview.zrecycleview.widget.ZRecycleView
+import com.zyl.picturechoose.demo.R
 import kotlinx.android.synthetic.main.activity_picture_choose.*
 import java.io.File
 import java.sql.Date
@@ -34,7 +34,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class PictureChooseActivity : AppCompatActivity() {
-var imgList= ArrayList<ImgInfor>()
     var simpleDateFormat:SimpleDateFormat?=null
     var parentNameList=ArrayList<String>()
     var dataList=ArrayList<ImgInfor>()
@@ -46,7 +45,6 @@ var imgList= ArrayList<ImgInfor>()
     var popView:View?=null
     var popRecycleView:ZRecycleView?=null
     var currentFileName=""
-    var popParent:View?=null
     val REQUEST_CARMERA=0x11
     var headerView:ImageView?=null
     var photoFile:File?=null

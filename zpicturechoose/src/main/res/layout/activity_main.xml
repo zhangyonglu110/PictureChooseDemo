@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RadioGroup
+        android:layout_marginTop="30dp"
+        android:id="@+id/rg_choose_model"
+        android:layout_marginLeft="16dp"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rbt_model_one"
+            android:checked="true"
+            android:text="单选"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <RadioButton
+            android:id="@+id/rbt_model_two"
+            android:text="多选"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RadioGroup>
+
+
+    <RadioGroup
+        android:id="@+id/rg_crop"
+        android:layout_marginLeft="16dp"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rbt_one"
+            android:checked="true"
+            android:text="不裁剪"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <RadioButton
+            android:id="@+id/rbt_two"
+            android:text="裁剪"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RadioGroup>
+
+
+    <RadioGroup
+        android:id="@+id/rg_color"
+        android:layout_marginLeft="16dp"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rbt_color_one"
+            android:checked="true"
+            android:text="红色"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/rbt_color_two"
+            android:checked="true"
+            android:text="绿色"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/rbt_color_three"
+            android:checked="true"
+            android:text="蓝色"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RadioGroup>
+
+    <Button
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:id="@+id/btn_open_photo"
+        android:text="选择照片"
+        android:padding="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+
+    <TextView
+        android:layout_margin="16dp"
+        android:text="返回结果"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:id="@+id/tv_result"
+        android:layout_margin="16dp"
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

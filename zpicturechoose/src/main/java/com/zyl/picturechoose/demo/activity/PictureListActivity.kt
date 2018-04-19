@@ -7,10 +7,10 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.zyl.myview.picture.R
 import com.zyl.myview.zrecycleview.base.BaseRecycleAdapter
 import com.zyl.myview.zrecycleview.base.BaseViewHolder
 import com.zyl.myview.zrecycleview.widget.ZRecycleView
+import com.zyl.picturechoose.demo.R
 
 /**
  * Created by zhangyonglu on 2018/4/10.

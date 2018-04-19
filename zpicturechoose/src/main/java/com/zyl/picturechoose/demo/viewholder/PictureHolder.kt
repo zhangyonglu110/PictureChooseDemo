@@ -6,10 +6,10 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
-import com.zyl.myview.picture.R
-import com.zyl.myview.picture.app.PictureApplication
 import com.zyl.myview.picture.model.ImgInfor
+import com.zyl.myview.picture.util.SelectImgCachUtil
 import com.zyl.myview.zrecycleview.base.BaseViewHolder
+import com.zyl.picturechoose.demo.R
 
 /**
  * Created by zhangyonglu on 2018/4/16.
@@ -35,14 +35,12 @@ class PictureHolder : BaseViewHolder<ImgInfor> {
         ckBox = itemView.findViewById<CheckBox>(R.id.cb_choose)
 //        nametv = itemView.findViewById<TextView>(R.id.tv_img_name)
         this.textView = textView
-        this.seletedList = PictureApplication.getInstance().getSelectedList()
+        this.seletedList = SelectImgCachUtil.getSelectedList()
         this.seletedNameList = slist
 
     }
 
     override fun setdata(s: ImgInfor?) {
-        Log.i("ccc","set data  sss-------------->"+Looper.myQueue())
-
 //        nametv!!.setText(s!!.name)
         if (!TextUtils.isEmpty(s!!.path)) {
             Glide.with(mitenView.context).load(s!!.path).into(imgView)
@@ -63,7 +61,7 @@ class PictureHolder : BaseViewHolder<ImgInfor> {
         }
 
         ckBox!!.setOnClickListener(View.OnClickListener {
-            if (seletedList!!.size >9) {
+            if (seletedList!!.size > 9) {
                 ckBox!!.isChecked = false
                 Toast.makeText(itemView.context, R.string.most_choose_nine_picture, Toast.LENGTH_SHORT).show()
             }
@@ -71,8 +69,6 @@ class PictureHolder : BaseViewHolder<ImgInfor> {
         })
         ckBox!!.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-
-
                 if (isChecked) {
                     if (!seletedList!!.contains(s!!)) {
                         seletedList!!.add(s!!)
@@ -80,7 +76,6 @@ class PictureHolder : BaseViewHolder<ImgInfor> {
                 } else {
                     if (seletedList!!.contains(s!!)) seletedList!!.remove(s!!)
                 }
-
                 textView!!.setText(itemView.context.getString(R.string.confirm) + "(" + seletedList!!.size + "/9" + ")")
             }
         })

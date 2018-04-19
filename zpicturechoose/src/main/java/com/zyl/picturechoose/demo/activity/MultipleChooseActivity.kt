@@ -17,16 +17,17 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.*
 import com.bumptech.glide.Glide
-import com.zyl.myview.picture.R
 import com.zyl.myview.picture.app.PictureApplication
 import com.zyl.myview.picture.app.PictureConstant
 import com.zyl.myview.picture.model.ImgInfor
+import com.zyl.myview.picture.util.SelectImgCachUtil
 import com.zyl.myview.picture.viewholder.PictureHolder
 import com.zyl.myview.zrecycleview.base.BaseRecycleAdapter
 import com.zyl.myview.zrecycleview.base.BaseViewHolder
 import com.zyl.myview.zrecycleview.util.DensityUtil
 import com.zyl.myview.zrecycleview.util.ZItemDecoration
 import com.zyl.myview.zrecycleview.widget.ZRecycleView
+import com.zyl.picturechoose.demo.R
 import kotlinx.android.synthetic.main.activity_multiple_choose.*
 import java.io.File
 import java.sql.Date
@@ -166,7 +167,7 @@ class MultipleChooseActivity : AppCompatActivity() {
         })
 
         btn_confirm.setOnClickListener(View.OnClickListener {
-            var selectedImgInforList=PictureApplication.getInstance().getSelectedList()
+            var selectedImgInforList=SelectImgCachUtil.getSelectedList()
             Log.i("aaa","selectedImgInforList.size------------------->"+selectedImgInforList.size)
             if(selectedImgInforList.size<=0){
                 Toast.makeText(this, R.string.please_choose_picture, Toast.LENGTH_SHORT).show()
@@ -316,7 +317,7 @@ class MultipleChooseActivity : AppCompatActivity() {
     }
 
     override fun onStop() {
-        PictureApplication.getInstance().getSelectedList().clear()
+        SelectImgCachUtil.getSelectedList().clear()
         super.onStop()
     }
 

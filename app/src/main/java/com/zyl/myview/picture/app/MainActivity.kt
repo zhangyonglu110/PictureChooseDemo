@@ -9,9 +9,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.widget.RadioGroup
 import com.zyl.myview.picture.R
 import com.zyl.myview.picture.model.ImgInfor
@@ -26,7 +26,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        checkPermmison()
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+            checkPermmison()
+        }
 
         btn_open_photo.setOnClickListener(View.OnClickListener {
           ImageSelecterBuilder(this).setIsCrop(isCrop)
@@ -98,7 +100,5 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
+
 }

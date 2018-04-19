@@ -3,9 +3,9 @@ package com.zyl.myview.picture.app
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import com.zyl.myview.picture.R
 import com.zyl.myview.picture.activity.MultipleChooseActivity
 import com.zyl.myview.picture.activity.PictureChooseActivity
+import com.zyl.picturechoose.demo.R
 
 /**
  * Created by zhangyonglu on 2018/4/13.

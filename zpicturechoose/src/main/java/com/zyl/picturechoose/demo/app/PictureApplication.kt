@@ -2,13 +2,14 @@ package com.zyl.myview.picture.app
 
 import android.app.Application
 import com.zyl.myview.picture.model.ImgInfor
+import java.util.*
 
 /**
  * Created by zhangyonglu on 2018/4/17.
  */
 class PictureApplication:Application(){
 //    var instance:PictureApplication?=null
-var selectedPictureList=ArrayList<ImgInfor>()
+var selectedPictureList= ArrayList<ImgInfor>()
     override fun onCreate() {
         super.onCreate()
         minstance=this
