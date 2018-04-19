@@ -39,7 +39,7 @@
 
     </LinearLayout>
 
-    <com.zyl.myview.picture.widget.PopCircleView
+    <com.zyl.picturechoose.demo.widget.PopCircleView
         android:id="@+id/view_checked"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
