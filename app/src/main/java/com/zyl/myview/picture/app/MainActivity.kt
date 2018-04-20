@@ -8,7 +8,6 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -93,7 +92,6 @@ class MainActivity : AppCompatActivity() {
                      for(imgInfor in imgInforList){
                          buffer.append(imgInfor.path)
                          buffer.append("\n")
-
                      }
                      tv_result.setText(buffer.toString())
                  }

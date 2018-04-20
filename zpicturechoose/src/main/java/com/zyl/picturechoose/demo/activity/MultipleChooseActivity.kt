@@ -10,13 +10,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.*
-import com.bumptech.glide.Glide
 import com.zyl.myview.zrecycleview.base.BaseRecycleAdapter
 import com.zyl.myview.zrecycleview.base.BaseViewHolder
 import com.zyl.myview.zrecycleview.util.DensityUtil
@@ -27,6 +25,7 @@ import com.zyl.picturechoose.demo.app.PictureConstant
 import com.zyl.picturechoose.demo.model.ImgInfor
 import com.zyl.picturechoose.demo.util.SelectImgCachUtil
 import com.zyl.picturechoose.demo.viewholder.PictureHolder
+import com.zyl.picturechoose.demo.viewholder.PopListHolder
 import kotlinx.android.synthetic.main.activity_multiple_choose.*
 import java.io.File
 import java.sql.Date
@@ -46,29 +45,37 @@ class MultipleChooseActivity : AppCompatActivity() {
     var popWindow: PopupWindow?=null
     var popView: View?=null
     var popRecycleView: ZRecycleView?=null
-    var currentFileName=""
     var selectedImgInforList=ArrayList<ImgInfor>()
     var themeColor:Int=0
     var selectedNameList=ArrayList<String>()
+
+    companion object {
+        var currentFileName=""
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         setContentView(R.layout.activity_multiple_choose)
-        // var cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null)
-         var cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null)
-         initdata()
-         initPhotoData(cursor)
-         initRecycleView()
-         initListPopWindow()
-         initEvent()
+        setContentView(R.layout.activity_multiple_choose)
+        initdata()
+        Thread(Runnable {
+            var cursor = contentResolver!!.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null)
+            initPhotoData(cursor)
+            runOnUiThread(Runnable {
+                initRecycleView()
+                initListPopWindow()
+                initEvent()
+            })
+        }).start()
+
     }
 
     private fun initdata() {
         if(intent!=null){
-            themeColor=intent.getIntExtra(PictureConstant.INTENT_THEME_COLOR, R.color.colorPrimary)
+            themeColor=intent.getIntExtra(PictureConstant.INTENT_THEME_COLOR, resources.getColor(R.color.colorPrimary))
         }
+        simpleDateFormat=SimpleDateFormat("yyyy-MM-dd_HH:mm:ss")
         layout_title.setBackgroundColor(themeColor)
         layout_parent_type.setBackgroundColor(themeColor)
-        simpleDateFormat= SimpleDateFormat("yyyy-MM-dd_HH:mm:ss")
         btn_confirm.setText(getString(R.string.confirm)+"(0/9)")
     }
 
@@ -80,52 +87,23 @@ class MultipleChooseActivity : AppCompatActivity() {
         popRecycleView!!.setZItemDecoration(ZItemDecoration(this, LinearLayoutManager.VERTICAL, DensityUtil.dip2px(this, 1f), resources.getColor(R.color.gray_color)))
         popAdapter=object: BaseRecycleAdapter<String>(this,parentNameList, R.layout.layout_pop_list_recycle_item){
             override fun getViewHolder(p0: View?): BaseViewHolder<String> {
-               return object: BaseViewHolder<String>(p0){
-                   override fun setdata(s: String?) {
-                       if(!TextUtils.isEmpty(s)){
-                           try {
-                           var photoImgView=itemView.findViewById<ImageView>(R.id.img_parent_def) as ImageView
-                           var checkedView=itemView.findViewById<View>(R.id.view_checked)
-                           var fileNametv=itemView.findViewById<TextView>(R.id.tv_parent_file_name)
-                           var fileSizetv=itemView.findViewById<TextView>(R.id.tv_parent_file_size)
-                           var childList=map[s]
-                               if(s.equals("all")) fileNametv.setText(R.string.all_picture) else fileNametv.setText(s)
-                               if(s.equals(currentFileName)){
-                                   checkedView.visibility= View.VISIBLE
-                               }else{
-                                   checkedView.visibility= View.GONE
-                               }
-                           if(childList!=null&&childList.size>0){
-                               fileSizetv.setText(childList.size.toString()+getString(R.string.zhang))
-                               Glide.with(this@MultipleChooseActivity).load(childList[0].path).into(photoImgView)
-                           }
-                           }catch (e:Exception){
-
-                           }
-
-                       }
-                   }
-               }
+               return  PopListHolder(p0!!,map,PictureConstant.PICTURE_MODEL_MANY)
             }
         }
 
         popRecycleView!!.setAdapter(popAdapter)
-//        popWindow=PopupWindow(popView,ViewGroup.LayoutParams.MATCH_PARENT,layout_picture_choose_main.measuredHeight-supportActionBar!!.customView.measuredHeight-tv_photo_file_type.measuredHeight)
 
-        /**
-         * 获取主布局宽高  设置popwindow高度
-         */
+         //获取主布局宽高  设置popwindow高度
+
         var viewTreeObserver=layout_picture_choose_main.viewTreeObserver
         viewTreeObserver.addOnGlobalLayoutListener (object: ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
-               // Log.i("sss", layout_picture_choose_main.measuredHeight.toString() + "-----" + layout_picture_choose_main.height)
                 popWindow= PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, layout_picture_choose_main.measuredHeight - DensityUtil.dip2px(this@MultipleChooseActivity, 50f) * 2)
                 popWindow!!.animationStyle= R.style.popwindow_style
                 popWindow!!.isFocusable=true
                 popWindow!!.update()
                 layout_picture_choose_main.viewTreeObserver.removeGlobalOnLayoutListener(this)
             }
-
         } )
     }
 
@@ -137,7 +115,6 @@ class MultipleChooseActivity : AppCompatActivity() {
                 var itemFileName=parentNameList.get(p0)
                 if(!itemFileName.equals(currentFileName)){
                     var list=map[itemFileName]
-                    Log.i("sss", "itemFileName   list-------------->" + list!!.size + "----" + list[0])
                     if(adapter!=null){
                         adapter!!.clear()
                         adapter!!.addAll(list)
@@ -167,17 +144,14 @@ class MultipleChooseActivity : AppCompatActivity() {
 
         btn_confirm.setOnClickListener(View.OnClickListener {
             var selectedImgInforList= SelectImgCachUtil.getSelectedList()
-            Log.i("aaa","selectedImgInforList.size------------------->"+selectedImgInforList.size)
             if(selectedImgInforList.size<=0){
                 Toast.makeText(this, R.string.please_choose_picture, Toast.LENGTH_SHORT).show()
                 return@OnClickListener
 
             }
-
             if(selectedImgInforList.size>PictureConstant.MAX_PICTURE_SELECT_NUM){
                 Toast.makeText(this, R.string.most_choose_nine_picture, Toast.LENGTH_SHORT).show()
                 return@OnClickListener
-
             }
 
             var intent= Intent()
@@ -192,9 +166,9 @@ class MultipleChooseActivity : AppCompatActivity() {
 
 
     private fun initRecycleView() {
-        /**
-         * 默认显示所有图片
-         */
+
+         //默认显示所有图片
+
         setDefListShow()
         zrecycleview.setLayoutManager(GridLayoutManager(this, 4))
         zrecycleview.setZItemDecoration(ZItemDecoration(this, LinearLayoutManager.VERTICAL, DensityUtil.dip2px(this, 5f), Color.WHITE))
@@ -218,9 +192,9 @@ class MultipleChooseActivity : AppCompatActivity() {
 
     }
 
-    /**
-     * 初始化数据  转化为map 集合
-     */
+
+      //初始化数据  转化为map 集合
+
     private fun initPhotoData(cursor: Cursor) {
         try {
             while (cursor.moveToNext()) {
@@ -239,30 +213,31 @@ class MultipleChooseActivity : AppCompatActivity() {
                 addDate = simpleDateFormat!!.format(Date(addDate.toLong()))
                 modifieDate = simpleDateFormat!!.format(Date(modifieDate.toLong()))
                 takenDate = simpleDateFormat!!.format(Date(takenDate.toLong()))
-                /**
-                 * 验证是否存在
-                 */
+
+                 //验证是否存在
+
                 var file = File(path)
                 if(!file.exists()){
                     continue
                 }
-                /**
-                 * 获取所在文件路径和文件名
-                 */
+
+                 //获取所在文件路径和文件名
+
                 var parentpath = file.parentFile.path
                 var parentName = file.parentFile.name
                 var imgInfor = ImgInfor()
 
                 if(!TextUtils.isEmpty(imgname))    imgInfor.name=imgname
+                if(!TextUtils.isEmpty(imgdes))    imgInfor.imgdes=imgdes
                 if(!TextUtils.isEmpty(path))    imgInfor.path=path
                 if(!TextUtils.isEmpty(parentName))  imgInfor.parentname=parentName
                 if(!TextUtils.isEmpty(parentpath)) imgInfor.parentpath=parentpath
                 if(!TextUtils.isEmpty(addDate))imgInfor.adddate=addDate
                 if(!TextUtils.isEmpty(modifieDate))imgInfor.modifiedate=modifieDate
                 if(!TextUtils.isEmpty(takenDate)) imgInfor.takendate=takenDate
-                /**
-                 * 数据分类
-                 */
+
+                //数据分类
+
                 if (!TextUtils.isEmpty(parentName)) {
                     if (!parentNameList.contains(parentName)) parentNameList.add(parentName)
                     var list: ArrayList<ImgInfor>? = null
@@ -275,27 +250,27 @@ class MultipleChooseActivity : AppCompatActivity() {
                         map[parentName] = list
                     }
                 }
-                /**
-                 * 所有图片
-                 */
+
+                 //所有图片
+
                 allImgList.add(imgInfor)
                 map.put("all",allImgList)
 
 
             }
         }catch (e:Exception){
-            Log.i("eee", "e----------------->" + e.toString())
-          Toast.makeText(this, "load picture fail", Toast.LENGTH_SHORT).show()
+            runOnUiThread(Runnable {
+                Toast.makeText(this, "load picture fail", Toast.LENGTH_SHORT).show()
+            })
         }finally {
             cursor.close()
         }
-        /**
-         * 添加所有图片类别
-         */
+
+        //添加所有图片类别
+
         parentNameList.add(0,"all")
-        /**
-         * 图片按日期降序排列
-         */
+
+        //图片按日期降序排列
         if(parentNameList.size>1) {
             for (parentName in parentNameList) {
                 Collections.reverse(map[parentName])
@@ -316,14 +291,9 @@ class MultipleChooseActivity : AppCompatActivity() {
     }
 
     override fun onStop() {
+       //activity不可见时 清空缓存数据
         SelectImgCachUtil.getSelectedList().clear()
         super.onStop()
     }
-
-    override fun onDestroy() {
-
-        super.onDestroy()
-    }
-
 
 }

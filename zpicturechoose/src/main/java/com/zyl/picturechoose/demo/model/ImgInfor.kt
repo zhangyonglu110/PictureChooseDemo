@@ -15,4 +15,5 @@ class ImgInfor:Serializable{
     var modifiedate=""
     var takendate=""
     var isSelected=false
+    var imgdes=""
 }
