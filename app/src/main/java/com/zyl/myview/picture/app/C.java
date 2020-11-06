@@ -6,4 +6,6 @@ package com.zyl.myview.picture.app;
  * @Des:
  */
 public class C {
+
+    private String a="zyl-test";
 }
